@@ -14,14 +14,10 @@ python3.7 -m venv test
 source test/bin/activate
 git clone https://github.com/nalDaniels/TerraformDeployment6.git
 cd TerraformDeployment6
-sudo apt install -y python3-pip
 pip install pip --upgrade
 pip install -r requirements.txt
 pip install gunicorn
 pip install mysqlclient
 python database.py
-sleep 1
-python load_data.py
-sleep 1 
+python load_data.py 
 python -m gunicorn app:app -b 0.0.0.0 -D
-source test/bin/activate
