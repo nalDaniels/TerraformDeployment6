@@ -58,7 +58,7 @@ The Jenkins manager fulfilled the build and test stages, where Jenkins used git 
 The Jenkins agent then ran terraform init, terraform plan, and terraform apply on the files in the initTerraform. 
 
 ### Successful Deployments:
-Linked, please find the deployed application on 4 instances across the N. Virginia and Oregon regions:
+Linked, please find the deployed application on 4 instances across the N. Virginia and Oregon regions: https://github.com/nalDaniels/TerraformDeployment6/blob/main/DeploymentSuccess.md
 
 ## 5. Create Application Load Balancers
 ### Purpose: 
