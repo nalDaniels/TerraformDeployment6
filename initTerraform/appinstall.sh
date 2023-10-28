@@ -14,6 +14,7 @@ python3.7 -m venv test
 source test/bin/activate
 git clone https://github.com/nalDaniels/Deployment6.git
 cd Deployment6
+sudo apt install python3-pip
 pip install pip --upgrade
 pip install -r requirements.txt
 pip install gunicorn
