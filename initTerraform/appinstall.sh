@@ -12,9 +12,9 @@ sudo apt install -y python3.7-dev
 #Create a virtual environment and run code to deploy application
 python3.7 -m venv test
 source test/bin/activate
-git clone https://github.com/nalDaniels/Deployment6.git
-cd Deployment6
-sudo apt install python3-pip
+git clone https://github.com/nalDaniels/TerraformDeployment6.git
+cd TerraformDeployment6
+sudo apt install -y python3-pip
 pip install pip --upgrade
 pip install -r requirements.txt
 pip install gunicorn
