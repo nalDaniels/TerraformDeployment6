@@ -35,9 +35,11 @@ variable "RTnameWest" {}
 
 
 ##### VARIABLES FOR INSTANCE BLOCK #####
-variable "ami" {} 
+variable "ami1" {} 
+variable "ami2" {} 
 variable "instance_type" {} 
-variable "key_name" {} 
+variable "key_name1" {} 
+variable "key_name2" {} 
 variable "InstanceName1" {} 
 variable "InstanceName2" {} 
 variable "InstanceName3" {} 

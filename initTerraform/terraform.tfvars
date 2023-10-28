@@ -39,9 +39,11 @@ RTnameWest = "d6RT-West"
 
 
 ##### VARIABLES FOR INSTANCE BLOCK #####
-ami                    = "ami-053b0d53c279acc90"
+ami1                    = "ami-053b0d53c279acc90"
+ami2                    = "ami-0efcece6bed30fd98"  
 instance_type =  "t2.micro"
-key_name               = "D5.1Key"
+key_name1               = "D6_Key"
+key_name2               = "D6-West-Key" 
 InstanceName1 = "applicationServer01-east"
 InstanceName2 = "applicationServer02-east"
 InstanceName3 = "applicationServer01-west"

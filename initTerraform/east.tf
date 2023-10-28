@@ -8,6 +8,7 @@ provider "aws" {
 }
 # CREATE VPC
 resource "aws_vpc" "d6vpceast" {
+  provider = aws.east
   cidr_block       = "10.0.0.0/16"
   instance_tenancy = "default"
   enable_dns_support = true
@@ -18,6 +19,7 @@ resource "aws_vpc" "d6vpceast" {
 }
 # CREATE SUBNETS
 resource "aws_subnet" "publicsubnet1" {
+  provider = aws.east 
   vpc_id     = aws_vpc.d6vpceast.id
   cidr_block = "10.0.1.0/24"
   availability_zone = var.subnet1AZ
@@ -29,6 +31,7 @@ resource "aws_subnet" "publicsubnet1" {
 }
 
 resource "aws_subnet" "publicsubnet2" {
+  provider = aws.east 
   vpc_id     = aws_vpc.d6vpceast.id
   cidr_block = "10.0.2.0/24"
   availability_zone = var.subnet2AZ
@@ -41,6 +44,7 @@ resource "aws_subnet" "publicsubnet2" {
 
 # CREATE SECURITY GROUPS
 resource "aws_security_group" "app_sgeast" {
+  provider = aws.east
   name        = var.SGNameEast
   vpc_id = aws_vpc.d6vpceast.id
   description = "open guincorn port"
@@ -77,6 +81,7 @@ resource "aws_security_group" "app_sgeast" {
 
 # CREATE INTERNET GATEWAY
 resource "aws_internet_gateway" "gweast" {
+  provider = aws.east
   vpc_id = aws_vpc.d6vpceast.id
 
   tags = {
@@ -86,6 +91,7 @@ resource "aws_internet_gateway" "gweast" {
 
 # CONFIGURE DEFAULT ROUTE TABLE
 resource "aws_default_route_table" "routetableeast" {
+  provider = aws.east
   default_route_table_id = aws_vpc.d6vpceast.default_route_table_id
 
   route {
@@ -100,11 +106,12 @@ resource "aws_default_route_table" "routetableeast" {
 
 # CREATE INSTANCES
 resource "aws_instance" "application1" {
-  ami                    = var.ami
+  provider = aws.east
+  ami                    = var.ami1
   instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.app_sgeast.id]
   subnet_id = aws_subnet.publicsubnet1.id
-  key_name = var.key_name
+  key_name = var.key_name1 
   associate_public_ip_address = true
 
   user_data = "${file("appinstall.sh")}"
@@ -116,11 +123,12 @@ resource "aws_instance" "application1" {
 }
 
 resource "aws_instance" "application2" {
-  ami                    = var.ami
+  provider = aws.east
+  ami                    = var.ami1
   instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.app_sgeast.id]
   subnet_id = aws_subnet.publicsubnet2.id
-  key_name = var.key_name
+  key_name = var.key_name1
   associate_public_ip_address = true
 
   user_data = "${file("appinstall.sh")}"

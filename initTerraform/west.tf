@@ -8,6 +8,7 @@ provider "aws" {
 }
 # CREATE VPC
 resource "aws_vpc" "d6vpcwest" {
+  provider = aws.west
   cidr_block       = "10.0.0.0/16"
   instance_tenancy = "default"
   enable_dns_support = true
@@ -18,6 +19,7 @@ resource "aws_vpc" "d6vpcwest" {
 }
 # CREATE SUBNETS
 resource "aws_subnet" "publicsubnet3" {
+  provider = aws.west 
   vpc_id     = aws_vpc.d6vpcwest.id
   cidr_block = "10.0.1.0/24"
   availability_zone = var.subnet3AZ
@@ -29,6 +31,7 @@ resource "aws_subnet" "publicsubnet3" {
 }
 
 resource "aws_subnet" "publicsubnet4" {
+  provider = aws.west 
   vpc_id     = aws_vpc.d6vpcwest.id
   cidr_block = "10.0.2.0/24"
   availability_zone = var.subnet4AZ
@@ -41,6 +44,7 @@ resource "aws_subnet" "publicsubnet4" {
 
 # CREATE SECURITY GROUPS
 resource "aws_security_group" "app_sgwest" {
+  provider = aws.west
   name        = var.SGNameWest 
   vpc_id = aws_vpc.d6vpcwest.id
   description = "open gunicorn port"
@@ -77,6 +81,7 @@ resource "aws_security_group" "app_sgwest" {
 
 # CREATE INTERNET GATEWAY
 resource "aws_internet_gateway" "gwwest" {
+  provider = aws.west
   vpc_id = aws_vpc.d6vpcwest.id
 
   tags = {
@@ -86,6 +91,7 @@ resource "aws_internet_gateway" "gwwest" {
 
 # CONFIGURE DEFAULT ROUTE TABLE
 resource "aws_default_route_table" "routetablewest" {
+  provider = aws.west
   default_route_table_id = aws_vpc.d6vpcwest.default_route_table_id
 
   route {
@@ -100,11 +106,12 @@ resource "aws_default_route_table" "routetablewest" {
 
 # CREATE INSTANCES
 resource "aws_instance" "application3" {
-  ami                    = var.ami
+  provider = aws.west
+  ami                    = var.ami2
   instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.app_sgwest.id]
   subnet_id = aws_subnet.publicsubnet3.id
-  key_name = var.key_name
+  key_name = var.key_name2
   associate_public_ip_address = true
 
   user_data = "${file("appinstall.sh")}"
@@ -116,11 +123,12 @@ resource "aws_instance" "application3" {
 }
 
 resource "aws_instance" "application4" {
-  ami                    = var.ami
+  provider = aws.west
+  ami                    = var.ami2
   instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.app_sgwest.id]
   subnet_id = aws_subnet.publicsubnet4.id
-  key_name = var.key_name
+  key_name = var.key_name2 
   associate_public_ip_address = true
 
   user_data = "${file("appinstall.sh")}"
