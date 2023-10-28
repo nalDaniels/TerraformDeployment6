@@ -70,7 +70,7 @@ An application load balancer was used because the retail banking application use
 I created target groups for all 4 instances using port 8000. Essentially, a target group is what the load balancer interacts with. Next, I defined a security groups with ports open for HTTP requests and associated the load balancers with the instances. Be mindful that you have to go to the specific region to create this infrastructure. 
 
 ### Successful Deployments:
-Linked,  please find the load-balanced application on 4 instances across the N. Virginia and Oregon regions:
+Linked, please find the load-balanced application on 4 instances across the N. Virginia and Oregon regions: https://github.com/nalDaniels/TerraformDeployment6/blob/main/LoadBalancerSuccess.md
 
 # Optimization:
 I would optimize this deployment by adding an additional database since it has a single point of failure. I would set up the second database so that it is synced with the main database. You can have one database for writes and the other that simply does reads. 
