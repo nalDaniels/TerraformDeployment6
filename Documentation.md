@@ -9,7 +9,7 @@ To achieve redundancy and fault-tolerance, each region had two instances of the 
 Instead of having to manually specify what VPC I want to use for my Jenkins manager and agents, I can use Terraform, which smartly fills in the gaps when creating resources.
 
 ### Process:
-I was installing Jenkins on an instance in my default VPC, so I only had to create 2 instances and associate them with previously created subnets and security groups in my main.tf file. Terraform would then understand that it needs to use the default settings. You can find my main.tf file here:
+I was installing Jenkins on an instance in my default VPC, so I only had to create 2 instances and associate them with previously created subnets and security groups in my main.tf file. Terraform would then understand that it needs to use the default settings. You can find my main.tf file here: https://github.com/nalDaniels/TerraformDeployment6/blob/main/main.tf
 
 
 On the instance for the Jenkins manager, I installed the following packages: Software-properties-common, which helps manage different repositories or sources of packages
