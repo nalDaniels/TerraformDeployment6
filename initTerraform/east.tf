@@ -114,7 +114,7 @@ resource "aws_instance" "application1" {
   key_name = var.key_name1 
   associate_public_ip_address = true
 
-   user_data = "${file("app.sh")}"
+  user_data = "${file("app.sh")}"
 
 
   tags = {
