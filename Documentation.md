@@ -82,6 +82,7 @@ A CDN would also decrease latency. It could store and serve the home page, login
 # Resources:
 
 Linked, please find my system design for this deployment: 
+https://github.com/nalDaniels/TerraformDeployment6/blob/main/SystemDesign.md
 
 
 
