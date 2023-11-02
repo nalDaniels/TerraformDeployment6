@@ -75,7 +75,9 @@ Linked, please find the load-balanced application on 4 instances across the N. V
 # Optimization:
 I would optimize this deployment by adding an additional database since it has a single point of failure. I would set up the second database so that it is synced with the main database. You can have one database for writes and the other that simply does reads. 
 
-The applications, Jenkins and Terraform servers should be in private subnets with nginx web servers in the public subnet. For applications, it is essential to also add a NAT gateway so that the data can be sent back to the client from the private subnet. This will enhance the security of the application code and files
+The applications, Jenkins and Terraform servers should be in private subnets with nginx web servers in the public subnet. For applications, it is essential to also add a NAT gateway so that the data can be sent back to the client from the private subnet. This will enhance the security of the application code and files.
+
+For the DNS server, I would add geo-location routing, so that requests would be sent to the region closest to the client's IP address.
 
 A CDN would also decrease latency. It could store and serve the home page, login pages, and user input pages. 
 
